@@ -103,16 +103,6 @@ The application window will open immediately — no additional configuration req
 
 ---
 
-## 🖼 Screenshots
-
-> _Add your own screenshots here after running the app locally._
-
-![](image-1.png)
-[clipboard copied](image.png)
-[ Screenshot Placeholder: Main Application Window ]
-[ Screenshot Placeholder: Generated Password + Strength Indicator ]
-[ Screenshot Placeholder: Password History Panel ]
-
 
 
 ## 🚀 Future Improvements
