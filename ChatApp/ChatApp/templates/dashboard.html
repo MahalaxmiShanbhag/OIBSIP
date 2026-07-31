@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard - ChatApp{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="welcome-banner rounded-4 p-4 mb-4 text-white shadow">
+            <h2 class="fw-bold mb-1"><i class="bi bi-hand-thumbs-up-fill me-2"></i>Welcome, {{ username }}!</h2>
+            <p class="mb-0 opacity-75">Create a new room or jump into an existing conversation.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Create / Join Room Card -->
+    <div class="col-12 col-lg-4">
+        <div class="card shadow-sm border-0 rounded-4 h-100">
+            <div class="card-body p-4">
+                <h5 class="fw-bold mb-3"><i class="bi bi-plus-circle-fill text-gradient me-2"></i>Create a Room</h5>
+                <form method="POST" action="{{ url_for('dashboard') }}" class="mb-4">
+                    <input type="hidden" name="action" value="create">
+                    <div class="input-group">
+                        <input type="text" name="room_name" class="form-control rounded-start-pill" placeholder="New room name" required maxlength="120">
+                        <button type="submit" class="btn btn-gradient rounded-end-pill px-3">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <h5 class="fw-bold mb-3"><i class="bi bi-box-arrow-in-right text-gradient me-2"></i>Join a Room</h5>
+                <form method="POST" action="{{ url_for('dashboard') }}">
+                    <input type="hidden" name="action" value="join">
+                    <div class="input-group">
+                        <input type="text" name="room_name" class="form-control rounded-start-pill" placeholder="Room name to join" required maxlength="120">
+                        <button type="submit" class="btn btn-outline-secondary rounded-end-pill px-3">
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Available Rooms -->
+    <div class="col-12 col-lg-8">
+        <div class="card shadow-sm border-0 rounded-4 h-100">
+            <div class="card-body p-4">
+                <h5 class="fw-bold mb-3"><i class="bi bi-collection-fill text-gradient me-2"></i>Available Rooms</h5>
+
+                {% if rooms %}
+                    <div class="list-group">
+                        {% for r in rooms %}
+                            <a href="{{ url_for('room', room_name=r.room_name) }}"
+                               class="list-group-item list-group-item-action rounded-3 mb-2 d-flex justify-content-between align-items-center room-list-item">
+                                <span><i class="bi bi-hash me-1"></i><strong>{{ r.room_name }}</strong></span>
+                                <span class="badge bg-gradient-badge rounded-pill">Join <i class="bi bi-arrow-right-short"></i></span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted mb-0">No rooms yet — create the first one!</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

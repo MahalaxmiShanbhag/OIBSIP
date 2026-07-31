@@ -1,0 +1,197 @@
+/* ==========================================================
+   style.css — Custom styling for the Real-Time Chat Application
+   Layered on top of Bootstrap 5.
+   ========================================================== */
+
+:root {
+    --grad-start: #6366f1;
+    --grad-end: #8b5cf6;
+    --bubble-mine: linear-gradient(135deg, #6366f1, #8b5cf6);
+    --bubble-theirs: #f1f3f9;
+    --bg-soft: #f7f8fc;
+}
+
+body {
+    background-color: var(--bg-soft);
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body.dark-mode {
+    background-color: #121218;
+    color: #e6e6eb;
+}
+
+/* ---------- Navbar ---------- */
+.app-navbar {
+    background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
+}
+
+/* ---------- Gradient helpers ---------- */
+.text-gradient {
+    background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.btn-gradient {
+    background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
+    border: none;
+    color: #fff;
+}
+.btn-gradient:hover {
+    filter: brightness(1.08);
+    color: #fff;
+}
+
+.bg-gradient-badge {
+    background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
+    color: #fff;
+}
+
+/* ---------- Auth cards ---------- */
+.auth-card {
+    background-color: #ffffff;
+}
+body.dark-mode .auth-card,
+body.dark-mode .card {
+    background-color: #1c1c26;
+    color: #e6e6eb;
+}
+
+/* ---------- Dashboard ---------- */
+.welcome-banner {
+    background: linear-gradient(120deg, var(--grad-start), var(--grad-end));
+}
+
+.room-list-item {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.room-list-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.15);
+}
+
+/* ---------- Chat room layout ---------- */
+.chat-card {
+    height: calc(100vh - 160px);
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-messages {
+    overflow-y: auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-input-bar {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+body.dark-mode .chat-input-bar {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.send-btn {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* ---------- Chat bubbles ---------- */
+.message-row {
+    display: flex;
+    flex-direction: column;
+    max-width: 75%;
+    animation: fadeIn 0.2s ease-in;
+}
+
+.message-row.mine {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.message-row.theirs {
+    align-self: flex-start;
+    align-items: flex-start;
+}
+
+.bubble {
+    padding: 10px 16px;
+    border-radius: 18px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    line-height: 1.4;
+}
+
+.message-row.mine .bubble {
+    background: var(--bubble-mine);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+.message-row.theirs .bubble {
+    background: var(--bubble-theirs);
+    color: #222;
+    border-bottom-left-radius: 4px;
+}
+
+body.dark-mode .message-row.theirs .bubble {
+    background: #2a2a36;
+    color: #e6e6eb;
+}
+
+.msg-meta {
+    font-size: 0.72rem;
+    opacity: 0.6;
+    margin: 2px 6px 0;
+}
+
+.system-message {
+    align-self: center;
+    font-size: 0.8rem;
+    color: #888;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 4px 12px;
+    border-radius: 12px;
+    margin: 4px 0;
+}
+
+/* ---------- Typing indicator ---------- */
+.typing-indicator {
+    min-height: 22px;
+    font-style: italic;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Scrollbar polish ---------- */
+.chat-messages::-webkit-scrollbar {
+    width: 8px;
+}
+.chat-messages::-webkit-scrollbar-thumb {
+    background-color: rgba(99, 102, 241, 0.35);
+    border-radius: 8px;
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 768px) {
+    .chat-card {
+        height: calc(100vh - 220px);
+    }
+    .message-row {
+        max-width: 88%;
+    }
+}
