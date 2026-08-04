@@ -37,7 +37,7 @@ def create_app():
 # --- Create the app and SocketIO instance at module level so `flask run`
 #     and `python app.py` both work, and so socket_events can be registered. ---
 app = create_app()
-socketio = SocketIO(app, async_mode=Config.SOCKETIO_ASYNC_MODE, cors_allowed_origins="*")
+socketio = SocketIO(app, async_mode="threading", cors_allowed_origins="*")
 register_socket_events(socketio)
 
 

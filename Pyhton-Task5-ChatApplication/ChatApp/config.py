@@ -31,7 +31,7 @@ class Config:
 
     # Flask-SocketIO async mode. "threading" avoids requiring eventlet/gevent
     # to be perfectly configured, and works well for a moderate number of users.
-    SOCKETIO_ASYNC_MODE = "eventlet"
+    SOCKETIO_ASYNC_MODE = "threading"
 
     # Session cookie hardening
     SESSION_COOKIE_HTTPONLY = True
