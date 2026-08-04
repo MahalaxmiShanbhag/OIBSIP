@@ -175,11 +175,14 @@ def init_db():
 
 init_db()
 
+import os
+
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+
     socketio.run(
         app,
-        debug=True,
         host="0.0.0.0",
-        port=5000,
-        allow_unsafe_werkzeug=True
+        port=port,
+        debug=False
     )
