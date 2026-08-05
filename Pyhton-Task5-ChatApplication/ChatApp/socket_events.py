@@ -62,7 +62,7 @@ def register_socket_events(socketio):
                     {
                         "system": True,
                         "message": f"{username} left the room.",
-                        "timestamp": datetime.utcnow().strftime("%H:%M"),
+                        "timestamp": datetime.now().strftime("%H:%M"),
                     },
                     to=room_name,
                 )
@@ -111,7 +111,7 @@ def register_socket_events(socketio):
             {
                 "system": True,
                 "message": f"{username} joined the room.",
-                "timestamp": datetime.utcnow().strftime("%H:%M"),
+                "timestamp": datetime.now().strftime("%H:%M"),
             },
             to=room_name,
         )
@@ -135,7 +135,7 @@ def register_socket_events(socketio):
             {
                 "system": True,
                 "message": f"{username} left the room.",
-                "timestamp": datetime.utcnow().strftime("%H:%M"),
+                "timestamp": datetime.now().strftime("%H:%M"),
             },
             to=room_name,
         )
@@ -169,7 +169,7 @@ def register_socket_events(socketio):
                 room_id=room.id,
                 user_id=user.id,
                 message=processed_text,
-                timestamp=datetime.utcnow(),
+                timestamp=datetime.now(),
             )
             db.session.add(new_message)
             db.session.commit()
@@ -179,7 +179,7 @@ def register_socket_events(socketio):
             payload = {
                 "username": username,
                 "message": processed_text,
-                "timestamp": datetime.utcnow().strftime("%H:%M"),
+                "timestamp": datetime.now().strftime("%H:%M"),
             }
 
         emit("receive_message", payload, to=room_name)
